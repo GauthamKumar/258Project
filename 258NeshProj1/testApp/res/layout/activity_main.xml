@@ -1,0 +1,96 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:custom="http://schemas.android.com/apk/res/com.example.testapp"
+    tools:context=".MainActivity" 
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+    
+	<!-- The Button panel of the app -->
+	
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_height="wrap_content">
+
+    <Button
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+       	android:onClick="btnPressed"
+    	android:text="@string/btn_label" />
+    
+    <Button
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:onClick="Sacve_btnPressed"
+    	android:text="@string/btn_label_save" />
+    
+    <Button
+        android:id="@+id/lginBt"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:onClick="Login_btnPressed"
+    	android:visibility="visible"
+    	android:text="@string/btn_label_login" />
+    
+    <Button
+        android:id="@+id/lgot"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:onClick="LogOut_btnPressed"
+    	android:visibility="gone"
+    	android:text="@string/btn_label_logout" />
+    
+     <Button
+        android:id="@+id/buttonText4"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/btn_label_serv"
+    	android:visibility="gone" />
+    
+    </LinearLayout>
+    
+    
+    <com.example.testapp.LView
+        android:id="@+id/custView"
+        android:layout_width="fill_parent"
+        android:layout_height="254dp"
+        android:layout_margin="5dp"
+        custom:circleColor="#ff0099"
+        custom:circleLabel="Hello"
+        custom:labelColor="#ffff66" />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_height="wrap_content">
+    
+        <Button
+        android:id="@+id/buttonText5"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:onClick="Display_Text"
+    	android:text="@string/btn_label_text" />
+        
+        <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:hint="@string/text_prompt"
+        android:ems="10" />
+        
+    </LinearLayout>
+
+
+</LinearLayout>

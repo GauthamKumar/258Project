@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LView">
+    <attr name="circleColor" format="color" />
+    <attr name="circleLabel" format="string"></attr>
+    <attr name="labelColor" format="color"></attr>
+    <attr name="ImageLabel" format="string"></attr>
+</declare-styleable>
+</resources>

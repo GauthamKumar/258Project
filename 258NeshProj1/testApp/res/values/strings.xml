@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyTestApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_label">Change</string>
+    <string name="btn_label_save">Save</string>
+    <string name="btn_label_login">Login</string>
+    <string name="btn_label_serv">Serv</string>
+    <string name="btn_label_logout">Log Out</string>
+	<string name="btn_label_text">type_text</string>
+    <string name="text_prompt">Type Text Here!</string>
+	
+</resources>

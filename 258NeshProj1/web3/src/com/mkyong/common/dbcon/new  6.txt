@@ -1,0 +1,104 @@
+#!/usr/bin/python
+
+import os;
+import re;
+import heapq
+from collections import namedtuple
+import Tkinter;
+from Tkinter import *;
+
+
+def functionOpenStat(fileName):
+    filename = "/proc/"+fileName+"/stat";
+    f = open(filename);
+    for line in f:
+        return line;
+    f.close();
+    
+
+root = Tkinter.Tk();
+tiext = Text(root,height =12, width =50);
+tiext.grid(row=0,column=1,columnspan=2);
+h = [];
+count =0
+
+class ProcessInfo():
+    def __init__(self, processPID, processName ,userTimeSheduled , processNiceValue):
+        self.processPID = processPID
+        self.processName = processName
+        self.userTimeSheduled = userTimeSheduled
+        self.processNiceValue = processNiceValue
+
+class HeapManage():
+    def __init__(self, usageVal , processPID, processName):
+        self.usageVal = usageVal
+        self.processPID = processPID
+        self.processName = processName
+
+    def display(self):
+        print h
+
+    def manager(self):
+        global h
+        global count
+        global Stupid_List,big1
+        #heapq.heappush(h,(self.usageVal,self.processPID,self.processName));
+        if count < 10:
+            heapq.heappush(h,(self.usageVal,self.processPID,self.processName));
+            count = count + 1;
+        else:
+            temp = heapq.heappop(h);#pop the smallest element to compare if the current elemet is bigger or smaller
+            if temp[0] <= self.usageVal:#if bigger then push the current element
+                heapq.heappush(h,(self.usageVal,self.processPID,self.processName));
+                #print temp;
+            elif temp[0] > self.usageVal:#if smaller then push the same element back on to the list
+                heapq.heappush(h,(temp[0],temp[1],temp[2]));
+                #print temp
+     
+path = '/proc';
+#Ues a named tupple to hold the values of the process
+#the named tupple is passed into a dictionary that sotres the elements with the PID as the key and the rest as the named tupple
+ProcessInfoStruct = namedtuple("ProcessInfoStruct", "processPID processName userTimeSheduled processNiceValue");
+Dictionary = {};
+
+def processesFromFile():
+    global h
+    global count
+    for filename in os.listdir(path):
+        match = re.search(r'\d+',filename );
+        if match:
+            try:
+                procPidStatInfo = functionOpenStat(filename);
+            except IOError:
+                continue
+            else:
+                Local_list_1 = procPidStatInfo.split( );
+                Dictionary_return = Dictionary.get(int(Local_list_1[0]))
+                #check if the PID is allready in the dictionary of not
+                if Dictionary_return == None:
+                    temp = ProcessInfo(processPID = int(Local_list_1[0]),processName=Local_list_1[1].strip(" ( ) "),userTimeSheduled=int(Local_list_1[13]),processNiceValue=Local_list_1[18]);
+                    Dictionary[int(Local_list_1[0])] = temp;
+                else:
+                    # check if the PID has been reued by comparing names
+                    if Dictionary_return.processName == Local_list_1[1].strip(" ( )"):
+                        difference = (float(float(Local_list_1[13])-float(Dictionary_return.userTimeSheduled))/float(100*1))*100
+                        temp_obj = HeapManage(usageVal=difference,processPID = Dictionary_return.processPID, processName = Dictionary_return.processName );
+                        temp_obj.manager();
+                        Dictionary_return.userTimeSheduled = int(Local_list_1[13]);
+                    else: 
+                        temp = ProcessInfo(processPID = int(Local_list_1[0]),processName=Local_list_1[1].strip(" ( ) "),userTimeSheduled=int(Local_list_1[13]),processNiceValue=Local_list_1[18]);
+                        Dictionary[int(Local_list_1[0])] = temp;
+                        print "Entered"
+    Local_List = heapq.nlargest(10, h)
+    text_string = "";
+    text_string = "Total number of processes : " + repr(len(Dictionary))+ "\n";
+    for ele in Local_List:
+        text_string = text_string + repr(ele[0]) + " "+ repr(ele[1]) +" "+ele[2] + "\n"
+    h = []
+    count =0
+    tiext.delete('1.0', END);
+    tiext.insert(END,text_string);
+    tiext.after(1000, processesFromFile);
+        
+processesFromFile();
+root.mainloop(  );

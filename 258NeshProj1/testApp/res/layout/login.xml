@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+   android:id="@+id/editText1"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:minWidth="150dp" 
+   android:hint="Username"/>
+    
+    <EditText
+   android:id="@+id/editText2"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:inputType="textPassword" 
+   android:minWidth="150dp" />
+    
+	
+	
+	<Button
+   android:id="@+id/submit_to_login"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:text="Login" />
+
+	<EditText
+	    android:id="@+id/editText3"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</EditText>
+
+</LinearLayout>	
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <TextView
+        android:id="@+id/login_text_id_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The whiteboard app is a really simple and easy to use whiteboard. You need to login with our server. "/>
+    
+    <TextView
+        android:id="@+id/login_text_id_2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="14dp"
+        android:text="Not a Memeber? "/>
+    
+    <TextView
+        android:id="@+id/login_text_id_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Sign UP NOW! "/>
+    
+    <LinearLayout
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+    
+    <Button
+   		android:id="@+id/click_to_signup"
+   		android:layout_width="wrap_content"
+   		android:layout_height="wrap_content"
+   		android:background="#00FFFF"
+   		android:layout_marginRight="4dp"
+   		android:text="Signup.." />
+    
+    <Button
+   		android:id="@+id/click_to_signup"
+   		android:layout_width="wrap_content"
+   		android:layout_height="wrap_content"
+   		android:background="#00FFFF"
+   		android:layout_marginLeft="4dp"
+   		android:text="More" />
+    
+    </LinearLayout>
+    
+</LinearLayout>
+</LinearLayout>
